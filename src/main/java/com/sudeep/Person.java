@@ -1,10 +1,14 @@
 package com.sudeep;
 
 import javax.persistence.Entity;
-import javax.persistence.CascadeType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Person {
@@ -15,22 +19,29 @@ public class Person {
     private int age;
 
     private String name;
-    @OneToOne
-    private Job job;
+
+    @OneToMany
+    private List<Job> job=new ArrayList<Job>();
 
     public Long getId() {
         return id;
     }
 
-    public Job getJob() {
-        return job;
-    }
 
-    public void setJob(Job job) {
-        this.job = job;
-    }
 
-    public String getName() {
+    public List<Job> getJob() {
+		return job;
+	}
+
+
+
+	public void setJob(List<Job> job) {
+		this.job = job;
+	}
+
+
+
+	public String getName() {
         return name;
     }
 

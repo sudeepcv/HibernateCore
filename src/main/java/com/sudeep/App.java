@@ -17,7 +17,7 @@ public class App {
         Person person = new Person();
         person.setName("Sudeep cv");
         person.setAge(29);
-        person.setJob(job);
+        person.getJob().add(job);;
 
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class)
                 .addAnnotatedClass(Job.class);
