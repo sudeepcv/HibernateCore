@@ -1,23 +1,41 @@
 package com.sudeep;
 
 import javax.persistence.Entity;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Person {
     @Id
     @GeneratedValue
     private Long id;
-    private Name name;
+
     private int age;
 
-    public Name getName() {
-        return name;
-    }
+    private String name;
+    @OneToOne
+    private Job job;
 
     public Long getId() {
         return id;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setId(Long id) {
@@ -32,7 +50,4 @@ public class Person {
         this.age = age;
     }
 
-    public void setName(Name name) {
-        this.name = name;
-    }
 }
