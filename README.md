@@ -6,6 +6,7 @@ HibernateCore
 
 2. h2 console at:
     localhost:8082
+    use url as: jdbc:h2:file:~/db/mydb
 
 
 3. To run the console app:
