@@ -22,6 +22,10 @@ public class App {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(person);
+
+        Person pResult=(Person) session.get(Person.class, 1l);
+        System.out.println("Person name is:"+pResult.getName());
+
         transaction.commit();
     }
 }
