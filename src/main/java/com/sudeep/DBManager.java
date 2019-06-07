@@ -7,12 +7,13 @@ import org.h2.tools.Server;
 public class DBManager {
 
     private static void startDB() throws SQLException {
-
-        Server.createTcpServer("-tcpAllowOthers").start();
+        Server.createWebServer("-trace","-ifNotExists").start();
+        // Server.createTcpServer("-tcpAllowOthers").start();
     }
 
     private static void stopDB() throws SQLException {
         Server.shutdownTcpServer("tcp://localhost:9092", "", true, true);
+
     }
 
     public static void main(String[] args) {
