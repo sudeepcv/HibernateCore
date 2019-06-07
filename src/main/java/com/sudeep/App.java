@@ -10,8 +10,11 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class App {
     public static void main(String[] args) {
 
+        Name name = new Name();
+        name.setLastName("cvs");
+        name.setFirstName("sudeep");
         Person person = new Person();
-        person.setName("sudeep");
+        person.setName(name);
         person.setAge(29);
 
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class);
@@ -22,9 +25,6 @@ public class App {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(person);
-
-        Person pResult=(Person) session.get(Person.class, 1l);
-        System.out.println("Person name is:"+pResult.getName());
 
         transaction.commit();
     }

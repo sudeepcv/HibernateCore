@@ -9,10 +9,10 @@ public class Person {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private Name name;
     private int age;
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
@@ -32,7 +32,7 @@ public class Person {
         this.age = age;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 }
