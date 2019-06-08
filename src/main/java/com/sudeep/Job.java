@@ -1,9 +1,13 @@
 package com.sudeep;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Job {
@@ -12,22 +16,22 @@ public class Job {
     private Long id;
     private String title;
     private String company;
-    @ManyToOne
-    private Person person;
+    @ManyToMany
+    private List<Person> person = new ArrayList<>();
 
     public Long getId() {
         return id;
     }
 
-    public Person getPerson() {
-		return person;
-	}
+    public List<Person> getPerson() {
+        return person;
+    }
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}
+    public void setPerson(List<Person> person) {
+        this.person = person;
+    }
 
-	public String getCompany() {
+    public String getCompany() {
         return company;
     }
 

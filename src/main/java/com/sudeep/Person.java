@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 
@@ -21,7 +22,7 @@ public class Person {
 
     private String name;
 
-    @OneToMany(mappedBy = "person")
+    @ManyToMany
     private List<Job> job=new ArrayList<>();
 
     public Long getId() {

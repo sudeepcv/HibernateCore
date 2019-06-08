@@ -21,7 +21,7 @@ public class App {
         person.setAge(29);
         person.getJob().add(job);
 
-        job.setPerson(person);
+        job.getPerson().add(person);
 
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class)
                 .addAnnotatedClass(Job.class);
