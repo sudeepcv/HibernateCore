@@ -11,13 +11,17 @@ public class App {
     public static void main(String[] args) {
 
         Job job = new Job();
+
         job.setCompany("Piserve");
         job.setTitle("java developer");
 
         Person person = new Person();
+
         person.setName("Sudeep cv");
         person.setAge(29);
-        person.getJob().add(job);;
+        person.getJob().add(job);
+
+        job.setPerson(person);
 
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class)
                 .addAnnotatedClass(Job.class);
@@ -29,7 +33,6 @@ public class App {
         session.beginTransaction();
 
         session.save(job);
-
         session.save(person);
 
         session.getTransaction().commit();

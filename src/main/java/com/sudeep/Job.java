@@ -3,6 +3,7 @@ package com.sudeep;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Job {
@@ -11,12 +12,22 @@ public class Job {
     private Long id;
     private String title;
     private String company;
+    @ManyToOne
+    private Person person;
 
     public Long getId() {
         return id;
     }
 
-    public String getCompany() {
+    public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public String getCompany() {
         return company;
     }
 

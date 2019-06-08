@@ -1,5 +1,6 @@
 package com.sudeep;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class Person {
 
     private String name;
 
-    @OneToMany
-    private List<Job> job=new ArrayList<Job>();
+    @OneToMany(mappedBy = "person")
+    private List<Job> job=new ArrayList<>();
 
     public Long getId() {
         return id;
