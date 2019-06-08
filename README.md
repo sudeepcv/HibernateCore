@@ -1,7 +1,7 @@
 # HibernateCore
 HibernateCore
 
-1. To run the H2 database:
+1. To run the H2 database:   (for jpa we don't need this)
   mvn exec:java@start
 
 2. h2 console at:

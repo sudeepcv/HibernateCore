@@ -2,57 +2,37 @@ package com.sudeep;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class App {
     public static void main(String[] args) {
-        List<Person> people = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Person person = new Person();
-            person.setName("Sudeep cv" + i);
-            person.setAge(29);
-            people.add(person);
-        }
-        Person p = null;
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(Person.class);
+        // List<Person> people = new ArrayList<>();
 
-        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
-                .buildServiceRegistry();
+        // for (int i = 0; i < 5; i++) {
+        // Person person = new Person();
+        // person.setName("Sudeep cv" + i);
+        // person.setAge(29);
+        // people.add(person);
+        // }
 
-        SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // entityManager.find(Person.class,1l);
 
-        for (Person pe : people) {
-            session.save(pe);
-        }
-        session.getTransaction().commit();
-        session.close();
+        entityManager.getTransaction().begin();
 
-        Session session2 = sessionFactory.openSession();
-        session2.beginTransaction();
-        SQLQuery query2 = session2.createSQLQuery("select name,age from person ");
-        query2.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+        Person person = new Person();
+        person.setName("Sudeep cv");
+        person.setAge(29);
+        entityManager.persist(person);
+        System.out.println("----------------------------------------saving--------------------");
 
-        List list = query2.list();
-
-        for (Object person : list) {
-
-            Map m = (Map) person;
-            System.out.println(m.get("NAME"));
-        }
-
-        session2.getTransaction().commit();
-        session2.close();
+        entityManager.getTransaction().commit();
+        entityManager.close();
 
     }
 }
