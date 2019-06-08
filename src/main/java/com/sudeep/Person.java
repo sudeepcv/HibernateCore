@@ -1,18 +1,16 @@
 package com.sudeep;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Person {
     @Id
     @GeneratedValue
@@ -22,28 +20,11 @@ public class Person {
 
     private String name;
 
-    @ManyToMany
-    private List<Job> job=new ArrayList<>();
-
     public Long getId() {
         return id;
     }
 
-
-
-    public List<Job> getJob() {
-		return job;
-	}
-
-
-
-	public void setJob(List<Job> job) {
-		this.job = job;
-	}
-
-
-
-	public String getName() {
+    public String getName() {
         return name;
     }
 
