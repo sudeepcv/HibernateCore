@@ -2,8 +2,10 @@ package com.sudeep;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -38,19 +40,19 @@ public class App {
 
         Session session2 = sessionFactory.openSession();
         session2.beginTransaction();
-        Query query2 = session2.createQuery("select name,age from Person ");
-        query2.setCacheable(true);
+        SQLQuery query2 = session2.createSQLQuery("select name,age from person ");
+        query2.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 
-        List<Object[]> list= query2.list();
+        List list = query2.list();
 
-        for(Object[] resultset: list){
-            System.out.println(resultset[0]);
+        for (Object person : list) {
+
+            Map m = (Map) person;
+            System.out.println(m.get("NAME"));
         }
 
         session2.getTransaction().commit();
         session2.close();
-
-
 
     }
 }
