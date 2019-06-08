@@ -38,23 +38,19 @@ public class App {
 
         Session session2 = sessionFactory.openSession();
         session2.beginTransaction();
-        Query query2 = session2.createQuery("from Person where id=1l");
+        Query query2 = session2.createQuery("select name,age from Person ");
         query2.setCacheable(true);
 
-        p = (Person) query2.uniqueResult();
-        System.out.println("first Query out:" + p.getName());
+        List<Object[]> list= query2.list();
+
+        for(Object[] resultset: list){
+            System.out.println(resultset[0]);
+        }
+
         session2.getTransaction().commit();
         session2.close();
 
-        Session session3 = sessionFactory.openSession();
-        session3.beginTransaction();
-        Query query3 = session3.createQuery("from Person where id=1l");
-        query3.setCacheable(true);
 
-        p = (Person) query3.uniqueResult();
-        System.out.println("Second Query out:" + p.getName());
-        session3.getTransaction().commit();
-        session3.close();
 
     }
 }
