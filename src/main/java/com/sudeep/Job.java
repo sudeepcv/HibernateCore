@@ -16,7 +16,7 @@ public class Job {
     private Long id;
     private String title;
     private String company;
-    @ManyToMany
+    @ManyToMany(mappedBy = "job")
     private List<Person> person = new ArrayList<>();
 
     public Long getId() {
