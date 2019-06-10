@@ -3,10 +3,12 @@ package com.sudeep;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
@@ -38,13 +40,14 @@ public class App {
 
         Session session2 = sessionFactory.openSession();
         session2.beginTransaction();
-        Query query2 = session2.createQuery("select name,age from Person ");
-        query2.setCacheable(true);
 
-        List<Object[]> list= query2.list();
+        Criteria cr = session2.createCriteria(Person.class);
+        cr.add(Restrictions.eq("name", "Sudeep cv1"));
+        cr.add(Restrictions.eq("age", 29));
+        List<Person> list= cr.list();
 
-        for(Object[] resultset: list){
-            System.out.println(resultset[0]);
+        for(Person resultset: list){
+            System.out.println(resultset.getName());
         }
 
         session2.getTransaction().commit();
