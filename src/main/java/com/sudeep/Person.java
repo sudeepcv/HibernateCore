@@ -44,4 +44,8 @@ public class Person {
         this.age = age;
     }
 
+    public String toString(){
+        return "name:"+this.name +" age:"+this.age;
+    }
+
 }
